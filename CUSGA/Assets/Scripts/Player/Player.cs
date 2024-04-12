@@ -4,6 +4,8 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    public MapManager mapManager;
+
     public PhysicsMaterial2D zero;
     public PhysicsMaterial2D max;
 
@@ -108,6 +110,10 @@ public class Player : Entity
         base.Die();
 
         transform.position = back.position;
+        
+        mapManager.playerMap.SetActive(true);
+        mapManager.dogMap.SetActive(false);
+
         //stateMachine.ChangeState(deadState);
     }
 }
