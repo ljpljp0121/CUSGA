@@ -110,10 +110,15 @@ public class Player : Entity
         base.Die();
 
         transform.position = back.position;
-        
-        mapManager.playerMap.SetActive(true);
-        mapManager.dogMap.SetActive(false);
+
+        SetPlayerMap();
 
         //stateMachine.ChangeState(deadState);
+    }
+
+    public void SetPlayerMap()
+    {
+        mapManager.playerMap.SetActive(true);
+        mapManager.dogMap.SetActive(false);
     }
 }

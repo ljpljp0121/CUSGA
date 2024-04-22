@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71fabd07aafdf2845b91d2b58320e7d2
+guid: 304e440588c7af64990aba90e556dc0c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 12283, y: 358, z: 85, w: 2112}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door2Close_0
+      name: door1Open_0
       rect:
         serializedVersion: 2
-        x: 12344
-        y: 559
-        width: 622
-        height: 801
+        x: 12594
+        y: 1206
+        width: 6
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94e24cdd61fd8ef4f951c2288744fc77
-      internalID: -1900066432
+      spriteID: 991251c418dc45142a07179c406768a1
+      internalID: 209391962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: door1Open_1
+      rect:
+        serializedVersion: 2
+        x: 12270
+        y: 317
+        width: 654
+        height: 851
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8fcf2a089054464a84393289c0c49b5
+      internalID: 942269029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: door1Open_2
+      rect:
+        serializedVersion: 2
+        x: 12924
+        y: 381
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24d19dbd77a79b468252accf53fab4e
+      internalID: -1296880114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: door1Open_3
+      rect:
+        serializedVersion: 2
+        x: 12911
+        y: 330
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dc0dc5f71021d244b0601c1b11fab04
+      internalID: 2089757880
       vertices: []
       indices: 
       edges: []
@@ -160,14 +223,17 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      door2Close_0: -1900066432
+      door1Open_0: 209391962
+      door1Open_1: 942269029
+      door1Open_2: -1296880114
+      door1Open_3: 2089757880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
