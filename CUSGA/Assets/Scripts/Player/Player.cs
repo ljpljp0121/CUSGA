@@ -121,4 +121,10 @@ public class Player : Entity
         mapManager.playerMap.SetActive(true);
         mapManager.dogMap.SetActive(false);
     }
+    
+    public void SetDogMap()
+    {
+        mapManager.playerMap.SetActive(false);
+        mapManager.dogMap.SetActive(true);
+    }
 }

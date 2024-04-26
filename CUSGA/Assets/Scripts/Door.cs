@@ -2,6 +2,15 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum NpcType
+{
+    None,
+    one,
+    two,
+    three,
+    four
+}
+
 public class Door : MonoBehaviour
 {
     public bool destroyNPC;
@@ -10,8 +19,7 @@ public class Door : MonoBehaviour
 
     public CinemachineConfiner2D confiner;
     public PolygonCollider2D bounds;
-    public bool 第二关光照;
-
+    public NpcType npcType = NpcType.one;
 
     private void Update()
     {
@@ -26,15 +34,15 @@ public class Door : MonoBehaviour
                 {
                     confiner.m_BoundingShape2D = bounds;
                 }
-                if(第二关光照)
+                if(backDoor.name == "DoorOut1")
                 {
                     Player.instance.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "第二关";
                 }
                 //第二关出口门在DogMap地形上。第三关入口门在PlayerMap地形上。所以需要改变地图
-                print(backDoor.name);
+
                 if (backDoor.name == "DoorEnter3")
                 {
-                    Player.instance.SetPlayerMap();
+                    Player.instance.SetDogMap();
                 }
             }
             else
@@ -43,7 +51,7 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("1");
+
         if (other.gameObject.CompareTag("Player"))
         {
             canuse = true;
@@ -52,10 +60,22 @@ public class Door : MonoBehaviour
         {
             if (destroyNPC)
             {
-                if (other.gameObject.layer == 9)
+                if (other.GetComponent<NpcFollowMono>().layerint == 9 && other.GetComponent<NpcFollowMono>().npctype == npcType)
                 {
-                    Debug.Log("Npc");
                     Destroy(other.gameObject);
+
+                    if(npcType == NpcType.one)
+                    {
+                        npcType = NpcType.two;
+                    }
+                    else if(npcType == NpcType.two)
+                    {
+                        npcType = NpcType.three;
+                    }
+                    else if(npcType == NpcType.three)
+                    {
+                        npcType = NpcType.four;
+                    }
                 }
             }
         }      
