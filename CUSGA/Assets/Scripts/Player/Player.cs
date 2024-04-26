@@ -4,6 +4,8 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    public FadeInOut fadeInOut;
+
     public MapManager mapManager;
 
     public PhysicsMaterial2D zero;
@@ -108,9 +110,9 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-
+        Debug.Log("Die");
+        fadeInOut.StartFadeInOut();
         transform.position = back.position;
-
         SetPlayerMap();
 
         //stateMachine.ChangeState(deadState);
