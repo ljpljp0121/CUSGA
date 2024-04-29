@@ -21,7 +21,7 @@ public class Player : Entity
     private float defaultMoveSpeed;
     private float defaultJumpForce;
 
-    private Transform back;
+    public Transform back;
 
     #region State
     public PlayerStateMachine stateMachine { get; private set; }
@@ -112,7 +112,7 @@ public class Player : Entity
         base.Die();
         Debug.Log("Die");
         fadeInOut.StartFadeInOut();
-        transform.position = back.position;
+        stateMachine.ChangeState(deadState);
         SetPlayerMap();
 
         //stateMachine.ChangeState(deadState);
