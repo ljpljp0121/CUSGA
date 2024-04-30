@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerDeadState : PlayerState
 {
+    private float elapsedTime;
+    private float duration = 4;
     public PlayerDeadState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -16,6 +19,7 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        elapsedTime = 0f;
     }
 
     public override void Exit()
@@ -26,8 +30,11 @@ public class PlayerDeadState : PlayerState
     public override void Update()
     {
         base.Update();
+        float t = elapsedTime / duration;
 
-        player.SetZeroVelocity();
+        Vector3 currentPosition = Vector3.Lerp(player.transform.position, player.back.position, t);
+        player.transform.position = currentPosition;
+        elapsedTime += Time.deltaTime;
     }
 }
 
