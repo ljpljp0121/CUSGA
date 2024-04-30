@@ -30,6 +30,7 @@ public class Player : Entity
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }
     public PlayerDeadState deadState { get; private set; }
+    public PlayerAliveState aliveState { get; private set; }
 
     #endregion
 
@@ -43,6 +44,7 @@ public class Player : Entity
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         airState = new PlayerAirState(this, stateMachine, "Jump");
         deadState = new PlayerDeadState(this, stateMachine, "Die");
+        aliveState = new PlayerAliveState(this, stateMachine, "Alive");
 
         if (instance != null)
             Destroy(instance.gameObject);

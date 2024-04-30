@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1088460517}
   fadeSpeed: 2
-  waitTime: 1
+  waitTime: 3
 --- !u!1 &239010475
 GameObject:
   m_ObjectHideFlags: 0
@@ -10844,12 +10844,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1802857469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f023da75c4eb3744ba05c0fc923e84e7, type: 3}
+  m_Script: {fileID: 11500000, guid: c71055383ebee064998a6505183b0c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  T: 0
   player: {fileID: 699401499}
-  duration: 3
 --- !u!1 &1803337292
 GameObject:
   m_ObjectHideFlags: 0
