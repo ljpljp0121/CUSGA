@@ -6,18 +6,39 @@ public class Dog : MonoBehaviour
 {
     public Animator animator;
     public Transform player;
+    private NpcFollowMono followMono;
 
+    private void Awake()
+    {
+        followMono = GetComponent<NpcFollowMono>();
+    }
 
     void Update()
     {
-
-        if(Mathf.Abs(transform.position.x - Player.instance.transform.position.x) > 0.5f)
+        if (followMono.playerPositionsCache.Peek().y - transform.position.y >0.001f)
         {
-            animator.SetBool("Move", true);
+            ChangeAnim("Jump");
+        }
+        else if (transform.position.y - followMono.playerPositionsCache.Peek().y > 0.001f)
+        {
+            ChangeAnim("Fall");
+        }
+        else if (followMono.playerPositionsCache.Peek().x != transform.position.x)
+        {   
+            ChangeAnim("Move");
         }
         else
         {
-            animator.SetBool("Move", false);
+            ChangeAnim("Idle");
         }
+    }
+
+    private void ChangeAnim(string b)
+    {
+        animator.SetBool("Idle", false);
+        animator.SetBool("Fall", false);
+        animator.SetBool("Move", false);
+        animator.SetBool("Jump", false);
+        animator.SetBool(b, true);
     }
 }

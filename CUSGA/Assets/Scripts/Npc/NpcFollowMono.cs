@@ -22,7 +22,7 @@ public class NpcFollowMono : MonoBehaviour
     /// <summary>
     /// target位置缓存队列
     /// </summary>
-    readonly Queue<Vector2> playerPositionsCache=new();
+    public readonly Queue<Vector2> playerPositionsCache=new();
 
     /// <summary>
     /// 开始跟随的时间点
