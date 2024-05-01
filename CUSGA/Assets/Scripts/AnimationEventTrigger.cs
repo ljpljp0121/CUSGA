@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadEventTrigger : MonoBehaviour
+public class AnimationEventTrigger : MonoBehaviour
 {
-    public float T;
     public Player player;
-    public float duration;
     void Start()
     {
         
     }
 
-    public void EventTrigger()
+    public void DeadEventTrigger()
+    {
+        player.stateMachine.ChangeState(player.aliveState);
+    }
+
+    public void AliveEventTrigger()
     {
         player.stateMachine.ChangeState(player.idleState);
     }
