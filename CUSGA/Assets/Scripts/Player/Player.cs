@@ -4,6 +4,8 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    public bool canMove;
+
     public FadeInOut fadeInOut;
 
     public MapManager mapManager;
@@ -57,6 +59,7 @@ public class Player : Entity
     {
         base.Start();
 
+        canMove = true;
         stateMachine.Initialize(idleState);
 
         defaultMoveSpeed = moveSpeed;
