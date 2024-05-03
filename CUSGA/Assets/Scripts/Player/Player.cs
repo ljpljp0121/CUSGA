@@ -5,9 +5,14 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+
     public GameObject Light2D;
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;
+
+    public DialogueSystem �����Ի�;
+    private bool firstDie;
+
 
     public bool canMove;
 
@@ -76,6 +81,12 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
 
+        if (!canMove)
+        {
+            SetZeroVelocity(rb.velocity.y);
+            return;
+        }
+
         if (!IsGroundDetected())
             cd.sharedMaterial = zero;
         else
@@ -120,12 +131,9 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-        Debug.Log("Die");
         fadeInOut.StartFadeInOut();
         stateMachine.ChangeState(deadState);
         SetPlayerMap();
-
-        //stateMachine.ChangeState(deadState);
     }
 
     public void SetPlayerMap()
