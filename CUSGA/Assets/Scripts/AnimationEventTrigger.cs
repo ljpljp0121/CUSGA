@@ -21,4 +21,5 @@ public class AnimationEventTrigger : MonoBehaviour
         player.stateMachine.ChangeState(player.idleState);
     }
 
+
 }

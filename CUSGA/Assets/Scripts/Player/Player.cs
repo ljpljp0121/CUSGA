@@ -1,9 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    public GameObject Light2D;
+    public Transform AliveBackgroundPosition;
+    public Animator AliveBackgroundAnim;
+
     public bool canMove;
 
     public FadeInOut fadeInOut;

@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class FadeInOut : MonoBehaviour
 {
+
     public CanvasGroup canvasGroup;
     [Tooltip("淡入淡出时间")]
     public float fadeSpeed;
@@ -29,11 +30,13 @@ public class FadeInOut : MonoBehaviour
         {
             canvasGroup.alpha += fadeSpeed * Time.deltaTime;
         }
+        
         yield return new  WaitForSeconds(waitTime);
         while (canvasGroup.alpha > 0f)
         {
             canvasGroup.alpha -= fadeSpeed * Time.deltaTime;
             yield return null;
         }
+        
     }
 }
