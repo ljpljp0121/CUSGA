@@ -10,7 +10,7 @@ public class Player : Entity
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;
 
-    public DialogueSystem �����Ի�;
+    //public DialogueSystem �����Ի�;
     private bool firstDie;
 
 
