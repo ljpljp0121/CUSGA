@@ -4,6 +4,9 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    public DialogueSystem 条件对话;
+    private bool firstDie;
+
     public bool canMove;
 
     public FadeInOut fadeInOut;
@@ -71,6 +74,12 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
 
+        if (!canMove)
+        {
+            SetZeroVelocity(rb.velocity.y);
+            return;
+        }
+
         if (!IsGroundDetected())
             cd.sharedMaterial = zero;
         else
@@ -115,12 +124,9 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-        Debug.Log("Die");
         fadeInOut.StartFadeInOut();
         stateMachine.ChangeState(deadState);
         SetPlayerMap();
-
-        //stateMachine.ChangeState(deadState);
     }
 
     public void SetPlayerMap()
