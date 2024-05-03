@@ -6,26 +6,21 @@ using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
-    private bool isTriggerd;
+    public bool isTriggerd;
     public GameObject dialogueAll;
-    private int mouceCount;
+    public int mouceCount;
     public Text dialogueBox;
 
+    public List<string> DialogueText;
 
-    [SerializeField] private List<string> DialogueText;
-
-
-    private bool isTalkOver = false;
+    public bool isTalkOver = false;
     void Start()
     {
-        isTriggerd = false;
-
         mouceCount = 0;
     }
 
     private void Update()
     {
-
         if (!isTriggerd)
             return;
 
@@ -67,6 +62,11 @@ public class DialogueSystem : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Talk();
+    }
+
+    public void Talk()
     {
         if (!isTriggerd)
         {

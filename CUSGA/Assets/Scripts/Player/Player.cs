@@ -11,6 +11,7 @@ public class Player : Entity
     public Animator AliveBackgroundAnim;
 
     public DialogueSystem dialog;
+    private string aliveDialog = "主角：谢谢你米洛，让我们再来一次!";
     private bool firstDie;
 
     [HideInInspector]public bool canMove;
@@ -60,13 +61,14 @@ public class Player : Entity
         else
             instance = this;
 
+        canMove = false;
+        firstDie = true;
     }
 
     protected override void Start()
     {
         base.Start();
 
-        canMove = true;
         stateMachine.Initialize(idleState);
 
         defaultMoveSpeed = moveSpeed;
@@ -131,6 +133,14 @@ public class Player : Entity
         fadeInOut.StartFadeInOut();
         stateMachine.ChangeState(deadState);
         SetPlayerMap();
+
+        if(!firstDie)
+        {
+            dialog.DialogueText.Clear();
+            dialog.DialogueText.Add(aliveDialog);
+        }
+
+        firstDie = false;
     }
 
     public void SetPlayerMap()

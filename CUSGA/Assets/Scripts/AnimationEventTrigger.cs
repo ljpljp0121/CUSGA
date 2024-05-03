@@ -19,6 +19,11 @@ public class AnimationEventTrigger : MonoBehaviour
     public void AliveEventTrigger()
     {
         player.stateMachine.ChangeState(player.idleState);
+
+        player.dialog.isTriggerd = false;
+        player.dialog.isTalkOver = false;
+        player.dialog.mouceCount = 0;
+        player.dialog.Talk();
     }
 
 
