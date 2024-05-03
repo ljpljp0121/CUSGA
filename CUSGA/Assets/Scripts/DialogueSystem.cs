@@ -68,12 +68,11 @@ public class DialogueSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (!isTriggerd)
         {
+            Player.instance.canMove = false;
             isTriggerd = true;
             dialogueAll.SetActive(true);
-            Player.instance.canMove = false;
         }
     }
 }

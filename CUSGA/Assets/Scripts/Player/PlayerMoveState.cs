@@ -22,8 +22,5 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (xInput == 0 )//|| player.IsWallDetected())
             stateMachine.ChangeState(player.idleState);
-
-        if(!Player.instance.canMove)
-            stateMachine.ChangeState(player.idleState);
     }
 }
