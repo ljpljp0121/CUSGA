@@ -15,12 +15,6 @@ public class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start()
-    {
-        PlayBGM(0);
-    }
-
-
     public void PlayBGM(int i, float volume = 0.8f)
     {
         audioSource.Stop();

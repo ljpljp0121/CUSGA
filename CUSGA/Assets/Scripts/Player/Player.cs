@@ -10,11 +10,10 @@ public class Player : Entity
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;
 
-    //public DialogueSystem �����Ի�;
+    public DialogueSystem dialog;
     private bool firstDie;
 
-
-    public bool canMove;
+    [HideInInspector]public bool canMove;
 
     public FadeInOut fadeInOut;
 
@@ -24,12 +23,10 @@ public class Player : Entity
     public PhysicsMaterial2D max;
 
     public static Player instance;
-    public Transform followPoint;
     public bool isBusy { get; private set; }
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
-    public float swordReturnImpact;
     private float defaultMoveSpeed;
     private float defaultJumpForce;
 
