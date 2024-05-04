@@ -24,11 +24,11 @@ public class FireWind : MonoBehaviour
         newIntervalTime += Time.deltaTime;
         if (newIntervalTime > intervalTime)
         {
-            if (audioSource.clip == null&&Player.istwo)
+            if (audioSource.clip == null&& Vector2.Distance(transform.position,Player.instance.transform.position)<15)
             {
                 int soundnum = Random.Range(0, 5);
                 audioSource.clip = SoundManager.instance.SoundList[soundnum];
-                audioSource.volume = 0.75f;
+                audioSource.volume = 0.75f;//(Vector2.Distance(transform.position, Player.instance.transform.position)/15);
                 audioSource.Play();
             }
             audioSource.volume -= 0.05f / keepTime*Time.deltaTime;

@@ -51,14 +51,12 @@ public class Door : MonoBehaviour
                 if(backDoor.name == "DoorOut1")
                 {
                     Player.instance.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "第二关";
-                    Player.istwo = true;
                 }
                 //第二关出口门在DogMap地形上。第三关入口门在PlayerMap地形上。所以需要改变地图
 
                 if (backDoor.name == "DoorEnter3")
                 {
                     Player.instance.SetDogMap();
-                    Player.istwo = false;
                 }
 
                 if (BGM != 0)
