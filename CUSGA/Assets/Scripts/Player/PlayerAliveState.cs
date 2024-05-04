@@ -16,14 +16,14 @@ public class PlayerAliveState : PlayerState
         player.transform.position = player.back.position;
         player.AliveBackgroundPosition.position = player.transform.position;
         player.AliveBackgroundAnim.SetBool("Alive", true);
-        //player.Light2D.SetActive(true);
+        player.Light2D.SetActive(true);
     }
 
     public override void Exit()
     {
         base.Exit();
         player.AliveBackgroundAnim.SetBool("Alive", false);
-        //player.Light2D.SetActive(false);
+        player.Light2D.SetActive(false);
     }
 
     public override void Update()
