@@ -5,7 +5,7 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
-
+    public static bool istwo;
     public GameObject Light2D;
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;

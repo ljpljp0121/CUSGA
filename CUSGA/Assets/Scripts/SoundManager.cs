@@ -28,12 +28,12 @@ public class SoundManager : MonoBehaviour
         audioSource.Stop();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="volume"></param>
     public void PlayerSound(int i, float volume = 1.0f)
-    {
-        audioSource.PlayOneShot(SoundList[i], volume);
-    }
-
-    public void PlaySound(AudioSource audioSource,int i, float volume = 1f)
     {
         audioSource.PlayOneShot(SoundList[i], volume);
     }
