@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
-public class StartGame : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler
+public class StartGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerDownHandler
 {
     public GameObject startImage;
-    public GameObject AllImage;
+    public GameObject allImage;
+    public GameObject startVedio;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-       AllImage.SetActive(false);
+        startVedio.SetActive(true);
+        allImage.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
