@@ -5,16 +5,15 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
-
     public GameObject Light2D;
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;
 
-    //public DialogueSystem ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½;
+    public DialogueSystem dialog;
+    private string aliveDialog = "Ö÷½Ç£ºÐ»Ð»ÄãÃ×Âå£¬ÈÃÎÒÃÇÔÙÀ´Ò»´Î!";
     private bool firstDie;
 
-
-    public bool canMove;
+    [HideInInspector]public bool canMove;
 
     public FadeInOut fadeInOut;
 
@@ -24,12 +23,10 @@ public class Player : Entity
     public PhysicsMaterial2D max;
 
     public static Player instance;
-    public Transform followPoint;
     public bool isBusy { get; private set; }
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
-    public float swordReturnImpact;
     private float defaultMoveSpeed;
     private float defaultJumpForce;
 
@@ -63,13 +60,14 @@ public class Player : Entity
         else
             instance = this;
 
+        canMove = false;
+        firstDie = true;
     }
 
     protected override void Start()
     {
         base.Start();
 
-        canMove = true;
         stateMachine.Initialize(idleState);
 
         defaultMoveSpeed = moveSpeed;
@@ -134,6 +132,14 @@ public class Player : Entity
         fadeInOut.StartFadeInOut();
         stateMachine.ChangeState(deadState);
         SetPlayerMap();
+
+        if(!firstDie)
+        {
+            dialog.DialogueText.Clear();
+            dialog.DialogueText.Add(aliveDialog);
+        }
+
+        firstDie = false;
     }
 
     public void SetPlayerMap()

@@ -20,6 +20,13 @@ public class Door : MonoBehaviour
     public CinemachineConfiner2D confiner;
     public PolygonCollider2D bounds;
     public NpcType npcType = NpcType.one;
+    private AudioSource audioSource;
+    public int BGM;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -27,6 +34,13 @@ public class Door : MonoBehaviour
         {
             if (backDoor != null)
             {
+                if (audioSource.clip == null)
+                {
+                    int soundnum = Random.Range(10, 12);
+                    audioSource.clip = SoundManager.instance.SoundList[soundnum];
+                    audioSource.Play();
+                }
+
                 Player.instance.transform.position = backDoor.position;
                 
 
@@ -43,6 +57,11 @@ public class Door : MonoBehaviour
                 if (backDoor.name == "DoorEnter3")
                 {
                     Player.instance.SetDogMap();
+                }
+
+                if (BGM != 0)
+                {
+                    SoundManager.instance.PlayBGM(BGM);
                 }
             }
             else
@@ -62,6 +81,13 @@ public class Door : MonoBehaviour
             {
                 if (other.GetComponent<NpcFollowMono>().layerint == 9 && other.GetComponent<NpcFollowMono>().npctype == npcType)
                 {
+                    if (audioSource.clip == null)
+                    {
+                        int soundnum = Random.Range(10, 12);
+                        audioSource.clip = SoundManager.instance.SoundList[soundnum];
+                        audioSource.Play();
+                    }
+
                     Destroy(other.gameObject);
 
                     if(npcType == NpcType.one)
