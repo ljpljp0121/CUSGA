@@ -7,13 +7,11 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.particleSystem.Play();
     }
 
     public override void Exit()
     {
         base.Exit();
-        player.particleSystem.Stop();
     }
 
     public override void Update()

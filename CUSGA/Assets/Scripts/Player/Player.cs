@@ -5,8 +5,6 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
-    public ParticleSystem particleSystem;
-
     public GameObject Light2D;
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;
@@ -69,7 +67,7 @@ public class Player : Entity
     protected override void Start()
     {
         base.Start();
-        particleSystem.Stop();
+
         stateMachine.Initialize(idleState);
 
         defaultMoveSpeed = moveSpeed;
