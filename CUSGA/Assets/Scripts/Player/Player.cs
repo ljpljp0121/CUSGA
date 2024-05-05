@@ -5,6 +5,8 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    public ParticleSystem particleSystem;
+
     public GameObject Light2D;
     public Transform AliveBackgroundPosition;
     public Animator AliveBackgroundAnim;
