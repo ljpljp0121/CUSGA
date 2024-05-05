@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum NpcType
 {
-    None,
+    Player,
     one,
     two,
     three,
@@ -19,9 +19,15 @@ public class Door : MonoBehaviour
 
     public CinemachineConfiner2D confiner;
     public PolygonCollider2D bounds;
-    public NpcType npcType = NpcType.one;
+    public NpcType npcType = NpcType.Player;
     private AudioSource audioSource;
     public int BGM;
+
+    public Sprite one;
+    public Sprite two;
+    public Sprite three;
+    public Sprite four;
+    public Sprite player;
 
     private void Awake()
     {
@@ -32,7 +38,7 @@ public class Door : MonoBehaviour
     {
         if (canuse&&Input.GetKeyDown(KeyCode.W))
         {
-            if (backDoor != null)
+            if (backDoor != null&&npcType == NpcType.Player)
             {
                 if (audioSource.clip == null)
                 {
@@ -93,14 +99,22 @@ public class Door : MonoBehaviour
                     if(npcType == NpcType.one)
                     {
                         npcType = NpcType.two;
+                        GetComponent<SpriteRenderer>().sprite = two;
                     }
                     else if(npcType == NpcType.two)
                     {
                         npcType = NpcType.three;
+                        GetComponent<SpriteRenderer>().sprite = three;
                     }
                     else if(npcType == NpcType.three)
                     {
                         npcType = NpcType.four;
+                        GetComponent<SpriteRenderer>().sprite = four;
+                    }
+                    else if(npcType == NpcType.four)
+                    {
+                        npcType = NpcType.Player;
+                        GetComponent<SpriteRenderer>().sprite = player;
                     }
                 }
             }
