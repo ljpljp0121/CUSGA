@@ -13,7 +13,7 @@ public class PlayerAliveState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.transform.position = player.back.position;
+        player.transform.position = player.back.transform.position;
         player.AliveBackgroundPosition.position = player.transform.position;
         player.AliveBackgroundAnim.SetBool("Alive", true);
         player.Light2D.SetActive(true);

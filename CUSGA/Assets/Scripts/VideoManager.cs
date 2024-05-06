@@ -4,6 +4,7 @@ using UnityEngine.Video;
 public class VideoManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
+    public int BGM;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class VideoManager : MonoBehaviour
     {
         Debug.Log(" ”∆µ≤•∑≈Ω· ¯£°");
         Player.instance.canMove = true;
-        SoundManager.instance.PlayBGM(0);
+        SoundManager.instance.PlayBGM(BGM);
         Destroy(gameObject);
     }
 }

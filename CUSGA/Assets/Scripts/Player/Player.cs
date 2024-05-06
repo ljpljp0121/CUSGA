@@ -32,7 +32,7 @@ public class Player : Entity
     private float defaultMoveSpeed;
     private float defaultJumpForce;
 
-    public Transform back;
+    public Back back;
 
     #region State
     public PlayerStateMachine stateMachine { get; private set; }
@@ -64,6 +64,8 @@ public class Player : Entity
 
         canMove = false;
         firstDie = true;
+
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
     protected override void Start()
@@ -97,7 +99,7 @@ public class Player : Entity
     {
         if (collision.gameObject.CompareTag("Back"))
         {
-            back = collision.transform;
+            back = collision.GetComponent<Back>();
         }
     }
 
@@ -133,7 +135,15 @@ public class Player : Entity
         base.Die();
         fadeInOut.StartFadeInOut();
         stateMachine.ChangeState(deadState);
-        SetPlayerMap();
+
+        if(back.isPlayer)
+        {
+            SetPlayerMap();
+        }
+        else
+        {
+            SetDogMap();
+        }
 
         if(!firstDie)
         {

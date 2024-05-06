@@ -21,7 +21,8 @@ public class Door : MonoBehaviour
     public PolygonCollider2D bounds;
     public NpcType npcType = NpcType.Player;
     private AudioSource audioSource;
-    public int BGM;
+
+    public GameObject 过场动画;
 
     public Sprite one;
     public Sprite two;
@@ -65,9 +66,9 @@ public class Door : MonoBehaviour
                     Player.instance.SetDogMap();
                 }
 
-                if (BGM != 0)
+                if(过场动画 != null)
                 {
-                    SoundManager.instance.PlayBGM(BGM);
+                    过场动画.SetActive(true);
                 }
             }
             else
