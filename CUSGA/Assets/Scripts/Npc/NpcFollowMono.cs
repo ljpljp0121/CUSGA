@@ -86,16 +86,16 @@ public class NpcFollowMono : MonoBehaviour
 
         if(left)
         {
-            if (transform.position.x < Player.instance.transform.position.x + 1f)
+            if (transform.position.x < Player.instance.transform.position.x + 0.3f)
                 transform.localScale = new Vector3(-1, 1, 1);
-            else if (transform.position.x > Player.instance.transform.position.x - 1f)
+            else if (transform.position.x > Player.instance.transform.position.x - 0.3f)
                 transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            if (transform.position.x < Player.instance.transform.position.x + 1f)
+            if (transform.position.x < Player.instance.transform.position.x + 0.3f)
                 transform.localScale = new Vector3(1, 1, 1);
-            else if (transform.position.x > Player.instance.transform.position.x - 1f)
+            else if (transform.position.x > Player.instance.transform.position.x - 0.3f)
                 transform.localScale = new Vector3(-1, 1, 1);
         }    
     }

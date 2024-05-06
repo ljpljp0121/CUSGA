@@ -1,27 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StartGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerDownHandler
+public class StartGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     public GameObject startImage;
     public GameObject allImage;
     public GameObject startVedio;
+    public bool isOver;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         startVedio.SetActive(true);
-        allImage.SetActive(false);
+        Invoke("Off", 0.2f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        startImage.SetActive(true);
+        if (!isOver)
+            startImage.SetActive(true);
+        else
+            Application.Quit();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         startImage.SetActive(false);
+    }
+
+    private void Off()
+    {
+        allImage.SetActive(false);
     }
 }

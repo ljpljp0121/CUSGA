@@ -13,6 +13,7 @@ public enum NpcType
 
 public class Door : MonoBehaviour
 {
+    public bool hasKey;
     public bool destroyNPC;
     [SerializeField] private Transform backDoor;//目的地
     private bool canuse;
@@ -30,14 +31,17 @@ public class Door : MonoBehaviour
     public Sprite four;
     public Sprite player;
 
+    private Animator animator;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (canuse&&Input.GetKeyDown(KeyCode.W))
+        if (canuse&&Input.GetKeyDown(KeyCode.W)&&hasKey)
         {
             if (backDoor != null&&npcType == NpcType.Player)
             {
@@ -48,33 +52,45 @@ public class Door : MonoBehaviour
                     audioSource.Play();
                 }
 
-                Player.instance.transform.position = backDoor.position;
-                
+                //动画
+                animator.SetTrigger("UseDoor");
 
-                if (bounds != null)
-                {
-                    confiner.m_BoundingShape2D = bounds;
-                }
-                if(backDoor.name == "DoorOut1")
+                
+                if (backDoor.name == "DoorOut1")
                 {
                     Player.instance.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "第二关";
-                }
-                //第二关出口门在DogMap地形上。第三关入口门在PlayerMap地形上。所以需要改变地图
-
-                if (backDoor.name == "DoorEnter3")
-                {
-                    Player.instance.SetDogMap();
-                }
-
-                if(过场动画 != null)
-                {
-                    过场动画.SetActive(true);
-                }
+                }       
             }
             else
                 Debug.Log("此门无法使用");
         }
     }
+
+    public void UseDoor()
+    {
+        if (backDoor.name == "DoorOut2")
+        {
+            Player.instance.SetDogMap();
+        }
+        else
+        {
+            Player.instance.SetPlayerMap();
+        }
+        Player.instance.transform.position = backDoor.position;
+        if (bounds != null)
+        {
+            confiner.m_BoundingShape2D = bounds;
+        }
+    }
+
+    public void Play()
+    {
+        if (过场动画 != null)
+        {
+            过场动画.SetActive(true);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -86,7 +102,7 @@ public class Door : MonoBehaviour
         {
             if (destroyNPC)
             {
-                if (other.GetComponent<NpcFollowMono>().layerint == 9 && other.GetComponent<NpcFollowMono>().npctype == npcType)
+                if (other.GetComponent<NpcFollowMono>() !=null&& other.GetComponent<NpcFollowMono>().layerint == 9 && other.GetComponent<NpcFollowMono>().npctype == npcType)
                 {
                     if (audioSource.clip == null)
                     {
@@ -127,5 +143,7 @@ public class Door : MonoBehaviour
         {
             canuse = false;
         }
+
+        audioSource.clip = null;
     }
 }

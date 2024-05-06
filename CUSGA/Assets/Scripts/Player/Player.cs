@@ -1,7 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Video;
-using UnityEngine.Windows;
 
 public class Player : Entity
 {
@@ -14,8 +12,9 @@ public class Player : Entity
     public DialogueSystem dialog;
     private string aliveDialog = "主角：谢谢你米洛，让我们再来一次!";
     private bool firstDie;
+    [HideInInspector] public bool downDie;
 
-    [HideInInspector]public bool canMove;
+    [HideInInspector] public bool canMove;
 
     public FadeInOut fadeInOut;
 
@@ -32,8 +31,8 @@ public class Player : Entity
     private float defaultMoveSpeed;
     private float defaultJumpForce;
 
-    public Back back;
-
+    [HideInInspector] public Back back;
+    [HideInInspector] public AudioSource audioSource;
     #region State
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
@@ -64,8 +63,7 @@ public class Player : Entity
 
         canMove = false;
         firstDie = true;
-
-        particleSystem = GetComponent<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected override void Start()
@@ -101,6 +99,10 @@ public class Player : Entity
         {
             back = collision.GetComponent<Back>();
         }
+        else if (collision.gameObject.CompareTag("Obj"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
@@ -119,7 +121,7 @@ public class Player : Entity
         moveSpeed = defaultMoveSpeed;
         jumpForce = defaultJumpForce;
     }
-   
+
 
     public IEnumerator BusyFor(float _seconds)
     {
@@ -133,10 +135,7 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-        fadeInOut.StartFadeInOut();
-        stateMachine.ChangeState(deadState);
-
-        if(back.isPlayer)
+        if (back.isPlayer)
         {
             SetPlayerMap();
         }
@@ -144,8 +143,10 @@ public class Player : Entity
         {
             SetDogMap();
         }
+        fadeInOut.StartFadeInOut();
+        stateMachine.ChangeState(deadState);
 
-        if(!firstDie)
+        if (!firstDie)
         {
             dialog.DialogueText.Clear();
             dialog.DialogueText.Add(aliveDialog);
@@ -159,7 +160,7 @@ public class Player : Entity
         mapManager.playerMap.SetActive(true);
         mapManager.dogMap.SetActive(false);
     }
-    
+
     public void SetDogMap()
     {
         mapManager.playerMap.SetActive(false);

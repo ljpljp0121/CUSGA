@@ -7,12 +7,12 @@ using UnityEngine;
 /// </summary>
 public class FadeInOut : MonoBehaviour
 {
-
     public CanvasGroup canvasGroup;
     [Tooltip("淡入淡出时间")]
     public float fadeSpeed;
     [Tooltip("淡入淡出之间黑屏持续时间")]
     public float waitTime;
+
     void Start()
     {
         canvasGroup.alpha = 0f;

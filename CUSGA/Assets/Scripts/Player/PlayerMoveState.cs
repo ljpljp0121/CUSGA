@@ -8,12 +8,14 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.Enter();
         player.particleSystem.Play();
+        player.audioSource.Play();
     }
 
     public override void Exit()
     {
         base.Exit();
         player.particleSystem.Stop();
+        player.audioSource.Stop();
     }
 
     public override void Update()

@@ -20,10 +20,17 @@ public class AnimationEventTrigger : MonoBehaviour
     {
         player.stateMachine.ChangeState(player.idleState);
 
-        player.dialog.isTriggerd = false;
-        player.dialog.isTalkOver = false;
-        player.dialog.mouceCount = 0;
-        player.dialog.Talk();
+        if (player.downDie)
+        {
+            player.downDie = false;
+        }
+        else
+        {
+            player.dialog.isTriggerd = false;
+            player.dialog.isTalkOver = false;
+            player.dialog.mouceCount = 0;
+            player.dialog.Talk();
+        }
     }
 
 
