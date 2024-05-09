@@ -15,10 +15,7 @@ public class VideoManager : MonoBehaviour
     {
         videoPlayer = GetComponent<VideoPlayer>();
     }
-    private void OnEnable()
-    {
-        black.SetActive(true);
-    }
+
     void Start()
     {
         videoPlayer.prepareCompleted += OnVideoPrepared;
@@ -26,6 +23,7 @@ public class VideoManager : MonoBehaviour
         videoPlayer.loopPointReached += OnVideoEnded;
 
         videoPlayer.Play();
+        Player.instance.canMove = false;
     }
 
     private void OnVideoPrepared(VideoPlayer source)
@@ -42,20 +40,24 @@ public class VideoManager : MonoBehaviour
     // 当视频播放结束时调用的方法  
     private void OnVideoEnded(VideoPlayer vp)
     {
-        if(isOver)
+        black.SetActive(false);
+        if (isOver)
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currentSceneIndex);
         }
-        if(nextVideoPlayer != null)
+        if (nextVideoPlayer != null)
         {
-            black.SetActive(true);
             nextVideoPlayer.SetActive(true);
+            if (nextVideoPlayer.GetComponent<VideoPlayer>() != null)
+            {
+                black.SetActive(true);
+            }
         }
 
         Player.instance.canMove = true;
         gameObject.SetActive(false);
-        if(BGM == 99) { return; }
+        if(BGM == 99) { SoundManager.instance.audioSource.Stop(); return; }
         SoundManager.instance.PlayBGM(BGM);
     }
 }

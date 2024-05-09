@@ -6,7 +6,6 @@ public class StartGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public GameObject startImage;
     public GameObject allImage;
     public GameObject startVedio;
-    public bool isOver;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -16,10 +15,7 @@ public class StartGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isOver)
-            startImage.SetActive(true);
-        else
-            Application.Quit();
+        startImage.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)

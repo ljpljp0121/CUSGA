@@ -8,12 +8,14 @@ public class DoorKey : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GetComponent<SpriteRenderer>().color = Color.white;
             door.GetComponent<SpriteRenderer>().color = Color.white;
             door.hasKey = true;
             foreach (GameObject npc in npcs)
             {
                 npc.SetActive(true);
             }
+            Destroy(this);
         }
     }
 }

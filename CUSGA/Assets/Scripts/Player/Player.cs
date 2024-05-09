@@ -101,7 +101,7 @@ public class Player : Entity
         }
         else if (collision.gameObject.CompareTag("Obj"))
         {
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject,0.2f);
         }
     }
 

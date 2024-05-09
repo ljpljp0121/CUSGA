@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    private AudioSource audioSource;
+    [HideInInspector] public AudioSource audioSource;
     public List<AudioClip> BgmList;
     public List<AudioClip> SoundList;
 

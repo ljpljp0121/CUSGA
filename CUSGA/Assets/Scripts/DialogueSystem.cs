@@ -25,7 +25,7 @@ public class DialogueSystem : MonoBehaviour
             return;
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)|| Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0)|| Input.GetKeyDown(KeyCode.H)|| Input.GetKeyDown(KeyCode.K)|| Input.GetKeyDown(KeyCode.W))
         {
             mouceCount++;
             if (mouceCount < DialogueText.Count)

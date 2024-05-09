@@ -15,7 +15,12 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if(Input.GetKeyUp(KeyCode.H))
         {
             if(playerMap.activeSelf)
             {

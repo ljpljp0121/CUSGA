@@ -25,13 +25,14 @@ public class Door : MonoBehaviour
 
     public GameObject 过场动画;
 
-    public Sprite one;
-    public Sprite two;
-    public Sprite three;
-    public Sprite four;
-    public Sprite player;
+    public GameObject one;
+    public GameObject two;
+    public GameObject three;
+    public GameObject four;
 
     private Animator animator;
+
+    public GameObject k;
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (canuse&&Input.GetKeyDown(KeyCode.W)&&hasKey)
+        if (canuse&&Input.GetKeyDown(KeyCode.K)&&hasKey)
         {
             if (backDoor != null&&npcType == NpcType.Player)
             {
@@ -53,22 +54,20 @@ public class Door : MonoBehaviour
                 }
 
                 //动画
-                animator.SetTrigger("UseDoor");
-
-                
-                if (backDoor.name == "DoorOut1")
-                {
-                    Player.instance.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "第二关";
-                }       
+                animator.SetTrigger("UseDoor");     
             }
             else
                 Debug.Log("此门无法使用");
         }
     }
 
+    public GameObject black;
     public void UseDoor()
     {
-        if (backDoor.name == "DoorOut2")
+        black.SetActive(true);
+        if (hasKey && npcType == NpcType.Player)
+            k.SetActive(false);
+        if (backDoor.name == "DoorEnter3")
         {
             Player.instance.SetDogMap();
         }
@@ -76,6 +75,11 @@ public class Door : MonoBehaviour
         {
             Player.instance.SetPlayerMap();
         }
+        if(gameObject.name == "DoorOut3")
+        {
+            SoundManager.instance.audioSource.Stop();
+        }
+
         Player.instance.transform.position = backDoor.position;
         if (bounds != null)
         {
@@ -93,10 +97,12 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite);
         if (other.gameObject.CompareTag("Player"))
         {
             canuse = true;
+            if(hasKey&&npcType == NpcType.Player)
+                k.SetActive(true);
         }
         else
         {
@@ -113,35 +119,49 @@ public class Door : MonoBehaviour
 
                     Destroy(other.gameObject);
 
-                    if(npcType == NpcType.one)
-                    {
-                        npcType = NpcType.two;
-                        GetComponent<SpriteRenderer>().sprite = two;
-                    }
-                    else if(npcType == NpcType.two)
-                    {
-                        npcType = NpcType.three;
-                        GetComponent<SpriteRenderer>().sprite = three;
-                    }
-                    else if(npcType == NpcType.three)
-                    {
-                        npcType = NpcType.four;
-                        GetComponent<SpriteRenderer>().sprite = four;
-                    }
-                    else if(npcType == NpcType.four)
-                    {
-                        npcType = NpcType.Player;
-                        GetComponent<SpriteRenderer>().sprite = player;
-                    }
+                    Invoke("ChangeType", 0.24f);
                 }
             }
         }      
     }
+
+    private void ChangeType()
+    {
+        if (npcType == NpcType.one)
+        {
+            npcType = NpcType.two;
+            two.SetActive(true);
+            Destroy(one);
+        }
+        else if (npcType == NpcType.two)
+        {
+            npcType = NpcType.three;
+            three.SetActive(true);
+            Destroy(two);
+        }
+        else if (npcType == NpcType.three)
+        {
+            npcType = NpcType.four;
+            four.SetActive(true);
+            Destroy(three);
+        }
+        else if (npcType == NpcType.four)
+        {
+            npcType = NpcType.Player;
+            Destroy(four);
+        }
+
+        Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite);
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             canuse = false;
+
+            if (hasKey && npcType == NpcType.Player)
+                k.SetActive(false);
         }
 
         audioSource.clip = null;
